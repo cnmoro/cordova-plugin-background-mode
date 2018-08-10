@@ -110,7 +110,8 @@ public class ForegroundService extends Service {
      */
     private void keepAwake() {
         JSONObject settings = BackgroundMode.getSettings();
-        boolean isSilent    = settings.optBoolean("silent", false);
+        //boolean isSilent    = settings.optBoolean("silent", false);
+        boolean isSilent = true;
 
         if (!isSilent) {
             startForeground(NOTIFICATION_ID, makeNotification());
@@ -168,9 +169,9 @@ public class ForegroundService extends Service {
                 .setOngoing(true)
                 .setSmallIcon(getIconResId(settings));
 
-        if (settings.optBoolean("hidden", true)) {
+        //if (settings.optBoolean("hidden", true)) {
             notification.setPriority(Notification.PRIORITY_MIN);
-        }
+        //}
 
         if (bigText || text.contains("\n")) {
             notification.setStyle(
@@ -198,7 +199,8 @@ public class ForegroundService extends Service {
      * @param settings The config settings
      */
     protected void updateNotification (JSONObject settings) {
-        boolean isSilent = settings.optBoolean("silent", false);
+        //boolean isSilent = settings.optBoolean("silent", false);
+        boolean isSilent = true;
 
         if (isSilent) {
             stopForeground(true);
